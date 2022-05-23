@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymelef.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Setup</title>
+    <div th:replace="fragments/navigation::custom_css"></div>
+    <div th:replace="fragments/navigation::generic_css"></div>
+    <style>
+        body{
+            background-color: #c29382;
+        }
+        h2{
+            text-align: center;
+        }
+        button{
+        }
+
+    </style>
+</head>
+<body>
+<div th:replace="fragments/navigation::navbar"></div>
+<button class="openbtn" onclick="openNav()">☰ Open Sidebar</button>
+<div class="container">
+    <h2>Product Setup</h2>
+    <form th:action="@{/product/create}" th:object="${productDto}" method="post">
+        <div class="col-md-3">
+            <input type="text" class="form-control"  th:value="${productDto.id}" id="id" name="id" hidden>
+        </div>
+        <div class="col-md-3">
+            <label for="productName" class="form-label">Name</label><br>
+            <input type="text" class="form-control"  th:value="${productDto.productName}" id="productName" name="productName">
+        </div>
+           <div class="col-md-3">
+                <label for="quantity" class="form-label">Quantity</label>
+                <input type="number" class="form-control"  th:value="${productDto.quantity}" id="quantity" name="quantity" >
+                </div>
+            <div class="col-md-3">
+                <label for="price" class="form-label">Price</label>
+                <input type="number" class="form-control" id="price" name="price">
+            </div>
+        <div class="row-md-12">
+            <button class="btn btn-primary" type="save">Save</button>
+        </div>
+    </form>
+    <p th:text="${message}"></p>
+<div class="row-md-8">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+        <th>SN</th>
+        <th>Product Name</th>
+        <th>Product Quantity</th>
+        <th>Price</th>
+        <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+          <tr th:each="product,loop:${productDtoList}">
+              <th th:text="${loop.count}"></th>
+              <td th:text="${product.productName}"></td>
+              <td th:text="${product.price}"></td>
+              <td th:text="${product.quantity}"></td>
+              <td>
+                  <a th:href="@{~/product/delete/}+${product.id}">
+                      <button class="btn btn-primary" type="delete">Delete</button>
+                  </a>
+                  <a th:href="@{~/product/edit/}+${product.id}">
+                      <button class="btn btn-primary" type="edit">Edit</button>
+                  </a>
+
+              </td>
+
+          </tr>
+        </tbody>
+    </table>
+</div>
+</div>
+</body>
+</html>

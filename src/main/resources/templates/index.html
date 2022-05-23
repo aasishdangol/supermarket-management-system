@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Supermarket Management System</title>
+    <div th:replace="fragments/navigation::custom_css"></div>
+    <div th:replace="fragments/navigation::generic_css"></div>
+    <style>
+        body {
+            background-color: #97a6c229;
+        }
+        h1{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div th:replace="fragments/navigation::navbar"></div>
+<div id="main">
+    <button class="openbtn" onclick="openNav()">☰ Open Sidebar</button>
+    <h1>Supermarket Management System</h1>
+    <!--    <img th:src="@{/../images/download.jpg}" width="100%">-->
+    <p>Being a student all too often is very expensive. It is particularly true in the United States and Canada. A
+        Canadian or American student is lucky when able to pay for everything a student might need in the countries
+        where paid education quickly eats up budgets of millions of families. Even if one has been saving money for
+        education for years, saving more is always a great idea. The idea of saving student's funds by renting college
+        textbooks was behind the creation of the B2C website this article is dedicated to.
+
+        Thousands of students are looking for the opportunity to rent textbooks that they do not want to keep for a long
+        time. According to Google’s keyword planner, the query “rent textbook” is popular worldwide throughout the year
+        with the average monthly number of searches being 14 800, hitting 50 000 at the beginning of semesters. Many
+        students have already understood how much they can save by renting textbooks or purchasing used ones. That is
+        why they are looking for businesses that offer them such benefits. So all kinds of online book selling
+        businesses can tap into this niche by adding the textbook rental feature to their websites.</p>
+</div>
+</body>
+</html>

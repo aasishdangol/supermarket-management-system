@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymelef.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Category Setup</title>
+    <div th:replace="fragments/navigation::custom_css"></div>
+    <div th:replace="fragments/navigation::generic_css"></div>
+</head>
+<body>
+<div th:replace="fragments/navigation::navbar"></div>
+<button class="openbtn" onclick="openNav()">☰ Open Sidebar</button>
+<div class="container">
+    <h2>Category Setup</h2>
+    <form th:action="@{/category/create}" th:object="${categoryDto}" method="post">
+        <div class="col-md-3">
+            <input type="text" class="form-control" id="id" name="id" hidden>
+        </div>
+        <div class="col-md-3">
+            <label for="categoryName" class="form-label">Name</label><br>
+            <input type="text" class="form-control" id="categoryName" name="categoryName">
+        </div>
+        <div class="col-md-3">
+           <label for="description" class="form-label">Description</label>
+            <textarea class="form-control" id="description"  rows="3" name="description"></textarea>
+        </div>
+        <div class="row-md-12">
+            <button class="btn btn-primary" type="save">Save</button>
+        </div>
+    </form>
+    <p th:text="${message}"></p>
+    <div class="row-md-8">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>SN</th>
+                <th>Category Name</th>
+                <th>Description</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="category,loop:${categoryDtoList}">
+                <th th:text="${loop.count}"></th>
+                <td th:text="${category.categoryName}"></td>
+                <td th:text="${category.description}"></td>
+                <td>
+                    <a th:href="@{~/category/delete/}+${category.id}">
+                        <button class="btn btn-primary" type="delete">Delete</button>
+                    </a>
+                    <a th:href="@{~/category/edit/}+${category.id}">
+                        <button class="btn btn-primary" type="edit">Edit</button>
+                    </a>
+
+                </td>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+</body>
+</html>
